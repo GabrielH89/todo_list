@@ -1,0 +1,119 @@
+/* Estilos gerais */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+.content {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para dispositivos móveis */
+@media (max-width: 768px) {
+  .content {
+    margin: 10px;
+  }
+}
+
+/* Estilos para tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .content {
+    margin: 20px;
+  }
+}
+
+/* Estilos para desktops */
+@media (min-width: 1025px) {
+  .content {
+    margin: 30px auto;
+    max-width: 800px;
+  }
+}
+
+/* Estilos para o formulário */
+form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#inputNameTask {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#btnAddTask {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Estilos para a lista de tarefas */
+#deleteAllTasks {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  font-size: 1.1rem;
+}
+
+#deleteAllTasks:hover {
+  background-color: #8B0000;
+  transition: 0.2s;
+}
+
+.taskContainer {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.textTask {
+  flex: 1;
+}
+
+.btnAction {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+/* Ícones */
+.fa {
+  font-size: 18px;
+}
