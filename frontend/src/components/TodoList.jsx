@@ -131,16 +131,17 @@ function TodoList() {
                 )}
                 <ul id="listTask">
                {showTask.map((taskItem) => (
-    <li key={taskItem.id}>
-        {editingTasks[taskItem.id] ? (
-            <input
-                type="text"
-                value={editedTask}
-                onChange={(e) => setEditedTask(e.target.value)}
-                onKeyUp={(e) => handleKeyUp(e, taskItem.id)} // Adicione o evento onKeyUp
-            />
-        ) : (
-            <span className="textTask">{taskItem.task}</span>
+                
+    <   li key={taskItem.id}>
+            {editingTasks[taskItem.id] ? (  
+                <input
+                    type="text"
+                    value={editedTask}
+                    onChange={(e) => setEditedTask(e.target.value)}
+                    onKeyUp={(e) => handleKeyUp(e, taskItem.id)} // Adicione o evento onKeyUp
+                />
+            ) : (
+                <span className="textTask">{taskItem.task}</span>
         )}
         <div>
             {editingTasks[taskItem.id] ? (
