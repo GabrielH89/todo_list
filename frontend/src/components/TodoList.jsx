@@ -91,6 +91,14 @@ function TodoList() {
             }
         }
     }
+
+    const handleKeyUp = (e, id) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            saveEditedTask(id);
+        }
+    }
+
     return (
         <div>
             <div className="content">
@@ -122,39 +130,40 @@ function TodoList() {
                         </button>
                 )}
                 <ul id="listTask">
-                {showTask.map((taskItem) => (
-                    <li key={taskItem.id}>
-                        {editingTasks[taskItem.id] ? (
-                            <input
-                                type="text"
-                                value={editedTask}
-                                onChange={(e) => setEditedTask(e.target.value)}
-                            />
-                        ) : (
-                            <span className="textTask">{taskItem.task}</span>
-                        )}
-                        <div>
-                            {editingTasks[taskItem.id] ? (
-                                <button
-                                    className="btnAction"
-                                    onClick={() => saveEditedTask(taskItem.id)}
-                                >
-                                    <i className="fa fa-check"></i>
-                                </button>
-                            ) : (
-                                <button
-                                    className="btnAction"
-                                    onClick={() => startEditing(taskItem.id, taskItem.task)}
-                                >
-                                    <i className="fa fa-pencil"></i>
-                                </button>
-                            )}
-                            <button className="btnAction" onClick={() => deleteTask(taskItem.id)}>
-                                <i className="fa fa-trash"></i>
-                            </button>
-                        </div>
-                    </li>
-                ))}
+               {showTask.map((taskItem) => (
+    <li key={taskItem.id}>
+        {editingTasks[taskItem.id] ? (
+            <input
+                type="text"
+                value={editedTask}
+                onChange={(e) => setEditedTask(e.target.value)}
+                onKeyUp={(e) => handleKeyUp(e, taskItem.id)} // Adicione o evento onKeyUp
+            />
+        ) : (
+            <span className="textTask">{taskItem.task}</span>
+        )}
+        <div>
+            {editingTasks[taskItem.id] ? (
+                <button
+                    className="btnAction"
+                    onClick={() => saveEditedTask(taskItem.id)}
+                >
+                    <i className="fa fa-check"></i>
+                </button>
+            ) : (
+                <button
+                    className="btnAction"
+                    onClick={() => startEditing(taskItem.id, taskItem.task)}
+                >
+                    <i className="fa fa-pencil"></i>
+                </button>
+            )}
+            <button className="btnAction" onClick={() => deleteTask(taskItem.id)}>
+                <i className="fa fa-trash"></i>
+            </button>
+        </div>
+    </li>
+))}
                 </ul>
             </div>
         </div>
