@@ -8,6 +8,7 @@ function TodoList() {
     const [shouldUpdate, setShouldUpdate] = useState(false); 
     const [editingTasks, setEditingTasks] = useState({});
     const [editedTask, setEditedTask] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         const getTask = async () => {
@@ -99,76 +100,93 @@ function TodoList() {
         }
     }
 
-    return (
-        <div>
-            <div className="content">
-                <div className="top">
-                    <form>
-                        <input
-                            type="text"
-                            id="inputNameTask"
-                            placeholder="Adicione uma nova tarefa"
-                            value={task}
-                            onChange={(e) => setTask(e.target.value)}
-                            onKeyDown={handleKeyDown}
-                        />
-                        <button type="button" id="btnAddTask" onClick={addTask}>
-                            <i className="fa fa-plus"></i>
-                        </button>
-                    </form>
-                </div>
+return (
+    <div>
+        <div className="content">
+            <div className="top">
+                <form>
+                    <input
+                        type="text"
+                        id="inputNameTask"
+                        placeholder="Adicione uma nova tarefa"
+                        value={task}
+                        onChange={(e) => setTask(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                    />
+                    <button type="button" id="btnAddTask" onClick={addTask}>
+                        <i className="fa fa-plus"></i>
+                    </button>
+                </form>
             </div>
+        </div>
 
-            <div className='taskContainer'>
-             
-                {showTask.length > 0 && (
-                    <button
-                    id='deleteAllTasks'
+        <div className='search-input'>
+            <input
+                type="text"
+                id="inputSearchTask"
+                placeholder="Pesquisar tarefas"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+        </div>
+ 
+        <div className="taskContainer">
+            {showTask.length > 0 && (
+                <button
+                    id="deleteAllTasks"
                     onClick={deleteAllTasks}
-                    disabled={showTask.length === 0}>
+                    disabled={showTask.length === 0}
+                >
                     Deletar tarefas
-                        </button>
-                )}
-                <ul id="listTask">
-               {showTask.map((taskItem) => (
-                
-    <   li key={taskItem.id}>
-            {editingTasks[taskItem.id] ? (  
-                <input
-                    type="text"
-                    value={editedTask}
-                    onChange={(e) => setEditedTask(e.target.value)}
-                    onKeyUp={(e) => handleKeyUp(e, taskItem.id)} // Adicione o evento onKeyUp
-                />
-            ) : (
-                <span className="textTask">{taskItem.task}</span>
-        )}
-        <div>
-            {editingTasks[taskItem.id] ? (
-                <button
-                    className="btnAction"
-                    onClick={() => saveEditedTask(taskItem.id)}
-                >
-                    <i className="fa fa-check"></i>
-                </button>
-            ) : (
-                <button
-                    className="btnAction"
-                    onClick={() => startEditing(taskItem.id, taskItem.task)}
-                >
-                    <i className="fa fa-pencil"></i>
                 </button>
             )}
-            <button className="btnAction" onClick={() => deleteTask(taskItem.id)}>
-                <i className="fa fa-trash"></i>
-            </button>
+            <ul id="listTask">
+                {showTask
+                    .filter((taskItem) =>
+                        taskItem.task.toLowerCase().includes(searchTerm.toLowerCase())
+                    )
+                    .map((taskItem) => (
+                        <li key={taskItem.id}>
+                            {editingTasks[taskItem.id] ? (
+                                <input
+                                    type="text"
+                                    value={editedTask}
+                                    onChange={(e) => setEditedTask(e.target.value)}
+                                    onKeyUp={(e) => handleKeyUp(e, taskItem.id)}
+                                />
+                            ) : (
+                                <span className="textTask">{taskItem.task}</span>
+                            )}
+                            <div>
+                                {editingTasks[taskItem.id] ? (
+                                    <button
+                                        className="btnAction"
+                                        onClick={() => saveEditedTask(taskItem.id)}
+                                    >
+                                        <i className="fa fa-check"></i>
+                                    </button>
+                                ) : (
+                                    <button
+                                        className="btnAction"
+                                        onClick={() => startEditing(taskItem.id, taskItem.task)}
+                                    >
+                                        <i className="fa fa-pencil"></i>
+                                    </button>
+                                )}
+                                <button
+                                    className="btnAction"
+                                    onClick={() => deleteTask(taskItem.id)}
+                                >
+                                    <i className="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </li>
+                    ))}
+            </ul>
         </div>
-    </li>
-))}
-                </ul>
-            </div>
-        </div>
-    )
-}
+    </div>
+ );
+ // ...
+                                } 
 
 export default TodoList;
