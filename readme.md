@@ -1,6 +1,6 @@
-# Mini chat 
+# TO DO List
 
-## Chat usando a api do chatengine
+## Lista de tarefas
 ![GitHub repo size](https://img.shields.io/github/repo-size/GabrielH89/todo_list)
 ![GitHub language count](https://img.shields.io/github/languages/count/GabrielH89/todo_list)
 
@@ -32,6 +32,6 @@ Tenha o npm e o node Js instalados na sua máquina
 
 #### No diretório frontend
 1. Dentro do diretório frontend, execute o comando $ npm install.   
-
-2. Após as dependências serem instaladas, através do comando anterior, o projeto está pronto para funcionar em sua própria máquina, com o comando $ npm run dev, que mostrará em qual porta está rodando a aplicação, geralmente a localhost:5173.
+2. Lembre-se de manter a porta do frontend igual à do backend para garantir a conexão.
+3. Após as dependências serem instaladas, através do comando anterior, o projeto está pronto para funcionar em sua própria máquina, com o comando $ npm run dev, que mostrará em qual porta está rodando a aplicação, geralmente a localhost:5173.
 
